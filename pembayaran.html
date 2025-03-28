@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #007BFF;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 13px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 10px;
+        }
+        input {
+            background-color: white;
+            color: black;
+        }
+        button {
+            background-color: white;
+            color: #007BFF;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pembayaran</h1>
+        <p>Silakan unggah bukti pembayaran:</p>
+        <input type="file" id="buktiTransfer" accept="image/*">
+        <p><strong>Instruksi:</strong><br>Transfer Dana / Gopay: <b>081944507757</b></p>
+        <br>
+        <button onclick="cekPembayaran()">Lanjut</button>
+    </div>
+
+    <script>
+        function cekPembayaran() {
+            let file = document.getElementById("buktiTransfer").files[0];
+
+            if (!file) {
+                alert("Silakan unggah bukti transfer terlebih dahulu!");
+                return;
+            }
+
+            alert("Bukti pembayaran telah diunggah. Mohon tunggu verifikasi.");
+            window.location.href = "data.html";
+        }
+
+        if (localStorage.getItem("terverifikasi") !== "true") {
+            alert("Anda belum terverifikasi!");
+            window.location.href = "verifikasi.html";
+        }
+    </script>
+</body>
+</html>

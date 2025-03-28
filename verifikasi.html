@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Akun</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #007BFF;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        input {
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 20px;
+        }
+        button {
+            background-color: white;
+            color: #007BFF;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Masukkan Kode Akses</h1>
+    <input type="text" id="kode" placeholder="Kode Akses">
+    <br><br>
+    <button onclick="verifikasi()">Verifikasi</button>
+
+    <script>
+        let gagal = 0;
+
+        function verifikasi() {
+            let kode = document.getElementById("kode").value.trim().toUpperCase();
+            if (kode === "WIS0011") {
+                localStorage.setItem("terverifikasi", "true");
+                window.location.href = "pembayaran.html";
+            } else {
+                gagal++;
+                alert("Kode akses salah! Percobaan ke-" + gagal);
+                if (gagal >= 3) {
+                    alert("Anda telah diblokir!");
+                    document.body.innerHTML = "<h1>Akses Diblokir</h1>";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
